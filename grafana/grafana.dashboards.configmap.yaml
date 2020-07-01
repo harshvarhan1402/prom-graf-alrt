@@ -2,6 +2,44 @@
 #https://raw.githubusercontent.com/coreos/kube-prometheus/master/manifests/grafana-dashboardDefinitions.yaml
 #DO NOT EDIT MANUALLY
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasources
+data:
+  datasources.yaml: |-
+    apiVersion: 1
+    datasources:
+    - name: prometheus
+      orgId: 1
+      type: prometheus 
+      url: http://prometheus-service:9090
+      ismonitoring: true
+      access: proxy
+      editable: true
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards
+  namespace: monitoring
+data:
+  dashboards.yaml: |-
+    {
+        "apiVersion": 1,
+        "providers": [
+            {
+                "folder": "",
+                "name": "0",
+                "options": {
+                    "path": "/grafana-dashboard-definitions/0"
+                },
+                "orgId": 1,
+                "type": "file"
+            }
+        ]
+    }
+---    
+apiVersion: v1
 items:
 - apiVersion: v1
   data:
@@ -1210,8 +1248,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -3076,8 +3114,8 @@ items:
                   },
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -3126,26 +3164,6 @@ items:
           "uid": "ff635a025bcfea7bc3dd4f508990a3e9",
           "version": 0
       }
-  kind: ConfigMap
-  metadata:
-    name: grafana-datasources
-    namespace: monitoring
-  data:
-    prometheus.yaml: |-
-    {
-        "apiVersion": 1,
-        "datasources": [
-            {
-               "access":"proxy",
-                "editable": true,
-                "name": "prometheus",
-                "orgId": 1,
-                "type": "prometheus",
-                "url": "http://prometheus-service:9090",
-                "version": 1
-            }
-        ]
-    }
   kind: ConfigMap
   metadata:
     name: grafana-dashboard-cluster-total
@@ -4187,8 +4205,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -6727,8 +6745,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -8564,8 +8582,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -9546,8 +9564,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -11097,8 +11115,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -13103,8 +13121,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -15244,8 +15262,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -17794,8 +17812,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -18004,7 +18022,7 @@ items:
                           "calcs": [
                               "last"
                           ],
-                          "defaults": {
+                          "monitorings": {
                               "max": 10000000000,
                               "min": 0,
                               "title": "$namespace",
@@ -18131,7 +18149,7 @@ items:
                           "calcs": [
                               "last"
                           ],
-                          "defaults": {
+                          "monitorings": {
                               "max": 10000000000,
                               "min": 0,
                               "title": "$namespace",
@@ -19141,8 +19159,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -20780,8 +20798,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -21872,8 +21890,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -22820,8 +22838,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -24297,8 +24315,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -24533,7 +24551,7 @@ items:
                           "calcs": [
                               "last"
                           ],
-                          "defaults": {
+                          "monitorings": {
                               "max": 10000000000,
                               "min": 0,
                               "title": "$namespace: $pod",
@@ -24660,7 +24678,7 @@ items:
                           "calcs": [
                               "last"
                           ],
-                          "defaults": {
+                          "monitorings": {
                               "max": 10000000000,
                               "min": 0,
                               "title": "$namespace: $pod",
@@ -25405,8 +25423,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -26109,8 +26127,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -28987,8 +29005,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -30212,8 +30230,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -31254,8 +31272,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -32112,8 +32130,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
@@ -33390,8 +33408,8 @@ items:
               "list": [
                   {
                       "current": {
-                          "text": "default",
-                          "value": "default"
+                          "text": "monitoring",
+                          "value": "monitoring"
                       },
                       "hide": 0,
                       "label": null,
