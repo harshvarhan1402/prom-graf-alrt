@@ -2,6 +2,8 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: grafana-storage
+  labels:
+     name: grafana-storage
   namespace: monitoring
 spec:
   accessModes:
@@ -9,3 +11,5 @@ spec:
   resources:
     requests:
       storage: 10Gi
+  storageClassName: gp2
+  volumeMode: Filesystem  
