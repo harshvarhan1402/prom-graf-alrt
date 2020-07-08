@@ -22963,7 +22963,3758 @@ items:
             "title": "APPLICATION HEALTH",
             "uid": "zDuALQMGz",
             "version": 10
-        }      
+        }
+  kind: ConfigMap
+  metadata:
+    name: grafana-dashboard-security-management-api
+    namespace: monitoring
+- apiVersion: v1
+  data:
+    security-management-api.json: |-
+        {
+            "annotations": {
+                "list": [
+                {
+                    "builtIn": 1,
+                    "datasource": "-- Grafana --",
+                    "enable": true,
+                    "hide": true,
+                    "iconColor": "rgba(0, 211, 255, 1)",
+                    "name": "Annotations & Alerts",
+                    "type": "dashboard"
+                }
+                ]
+            },
+            "editable": true,
+            "gnetId": null,
+            "graphTooltip": 0,
+            "id": 32,
+            "links": [],
+            "panels": [
+                {
+                "alert": {
+                    "alertRuleTags": {},
+                    "conditions": [
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.3
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "and"
+                        },
+                        "query": {
+                        "params": [
+                            "B",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    },
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.5
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "or"
+                        },
+                        "query": {
+                        "params": [
+                            "D",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    }
+                    ],
+                    "executionErrorState": "alerting",
+                    "for": "90s",
+                    "frequency": "1m",
+                    "handler": 1,
+                    "name": "Call Rate - Change User Password alert",
+                    "noDataState": "ok",
+                    "notifications": [
+                    {
+                        "uid": "ndPvlQGMz"
+                    }
+                    ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                    "defaults": {
+                    "custom": {}
+                    },
+                    "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 0
+                },
+                "hiddenSeries": false,
+                "id": 2,
+                "legend": {
+                    "alignAsTable": true,
+                    "avg": true,
+                    "current": true,
+                    "max": true,
+                    "min": true,
+                    "rightSide": false,
+                    "show": true,
+                    "total": true,
+                    "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                    "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                    {
+                    "expr": "changes(user_changePassword_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                    },
+                    {
+                    "expr": "rate(user_changePassword_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                    },
+                    {
+                    "expr": "rate(user_changePassword_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                    },
+                    {
+                    "expr": "user_changePassword_seconds_sum/user_changePassword_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                    }
+                ],
+                "thresholds": [
+                    {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                    }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Change User Password",
+                "tooltip": {
+                    "shared": true,
+                    "sort": 0,
+                    "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                    "buckets": null,
+                    "mode": "time",
+                    "name": null,
+                    "show": true,
+                    "values": []
+                },
+                "yaxes": [
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    },
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    }
+                ],
+                "yaxis": {
+                    "align": false,
+                    "alignLevel": null
+                }
+                },
+                {
+                "alert": {
+                    "alertRuleTags": {},
+                    "conditions": [
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.3
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "and"
+                        },
+                        "query": {
+                        "params": [
+                            "B",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    },
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.5
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "or"
+                        },
+                        "query": {
+                        "params": [
+                            "D",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    }
+                    ],
+                    "executionErrorState": "alerting",
+                    "for": "90s",
+                    "frequency": "1m",
+                    "handler": 1,
+                    "message": "Either change  forgotton password is experiencing too many errors or Average response time is higher than 500 ms",
+                    "name": "Call Rate - Change Forgotten Password alert",
+                    "noDataState": "ok",
+                    "notifications": [
+                    {
+                        "uid": "ndPvlQGMz"
+                    }
+                    ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                    "defaults": {
+                    "custom": {}
+                    },
+                    "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 0
+                },
+                "hiddenSeries": false,
+                "id": 3,
+                "legend": {
+                    "alignAsTable": true,
+                    "avg": true,
+                    "current": true,
+                    "max": true,
+                    "min": true,
+                    "rightSide": false,
+                    "show": true,
+                    "total": true,
+                    "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                    "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                    {
+                    "expr": "changes(user_changeForgottenPassword_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                    },
+                    {
+                    "expr": "rate(user_changeForgottenPassword_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                    },
+                    {
+                    "expr": "rate(user_changeForgottenPassword_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                    },
+                    {
+                    "expr": "user_changeForgottenPassword_seconds_sum/user_changeForgottenPassword_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                    }
+                ],
+                "thresholds": [
+                    {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                    }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Change Forgotten Password",
+                "tooltip": {
+                    "shared": true,
+                    "sort": 0,
+                    "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                    "buckets": null,
+                    "mode": "time",
+                    "name": null,
+                    "show": true,
+                    "values": []
+                },
+                "yaxes": [
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    },
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    }
+                ],
+                "yaxis": {
+                    "align": false,
+                    "alignLevel": null
+                }
+                },
+                {
+                "alert": {
+                    "alertRuleTags": {},
+                    "conditions": [
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.3
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "and"
+                        },
+                        "query": {
+                        "params": [
+                            "B",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    },
+                    {
+                        "evaluator": {
+                        "params": [
+                            2
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "or"
+                        },
+                        "query": {
+                        "params": [
+                            "D",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    }
+                    ],
+                    "executionErrorState": "alerting",
+                    "for": "90s",
+                    "frequency": "1m",
+                    "handler": 1,
+                    "message": "Either User login is experiencing too many errors or Average response time is higher than 500 ms",
+                    "name": "Call Rate - User login alert",
+                    "noDataState": "ok",
+                    "notifications": [
+                    {
+                        "uid": "ndPvlQGMz"
+                    }
+                    ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                    "defaults": {
+                    "custom": {}
+                    },
+                    "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 8
+                },
+                "hiddenSeries": false,
+                "id": 8,
+                "legend": {
+                    "alignAsTable": true,
+                    "avg": true,
+                    "current": true,
+                    "max": true,
+                    "min": true,
+                    "rightSide": false,
+                    "show": true,
+                    "total": true,
+                    "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                    "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                    {
+                    "expr": "changes(user_authenticate_seconds_count[1m])",
+                    "format": "time_series",
+                    "hide": false,
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                    },
+                    {
+                    "expr": "rate(user_authenticate_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "hide": false,
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                    },
+                    {
+                    "expr": "rate(user_authenticate_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                    },
+                    {
+                    "expr": "user_authenticate_seconds_sum/user_authenticate_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                    }
+                ],
+                "thresholds": [
+                    {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                    }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - User login",
+                "tooltip": {
+                    "shared": true,
+                    "sort": 0,
+                    "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                    "buckets": null,
+                    "mode": "time",
+                    "name": null,
+                    "show": true,
+                    "values": []
+                },
+                "yaxes": [
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    },
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    }
+                ],
+                "yaxis": {
+                    "align": false,
+                    "alignLevel": null
+                }
+                },
+                {
+                "alert": {
+                    "alertRuleTags": {},
+                    "conditions": [
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.3
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "and"
+                        },
+                        "query": {
+                        "params": [
+                            "B",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    },
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.5
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "or"
+                        },
+                        "query": {
+                        "params": [
+                            "D",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    }
+                    ],
+                    "executionErrorState": "alerting",
+                    "for": "90s",
+                    "frequency": "1m",
+                    "handler": 1,
+                    "message": "Either Invite Client Portal User is experiencing too many errors or Average response time is higher than 500 ms",
+                    "name": "Call Rate - Invite ClientPortal User alert",
+                    "noDataState": "ok",
+                    "notifications": [
+                    {
+                        "uid": "ndPvlQGMz"
+                    }
+                    ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                    "defaults": {
+                    "custom": {}
+                    },
+                    "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 8
+                },
+                "hiddenSeries": false,
+                "id": 4,
+                "legend": {
+                    "alignAsTable": true,
+                    "avg": true,
+                    "current": true,
+                    "max": true,
+                    "min": true,
+                    "rightSide": false,
+                    "show": true,
+                    "total": true,
+                    "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                    "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                    {
+                    "expr": "changes(user_clientPortal_invite_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                    },
+                    {
+                    "expr": "rate(user_clientPortal_invite_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                    },
+                    {
+                    "expr": "rate(user_clientPortal_invite_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                    },
+                    {
+                    "expr": "user_clientPortal_invite_seconds_sum/user_clientPortal_invite_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                    }
+                ],
+                "thresholds": [
+                    {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                    }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Invite ClientPortal User",
+                "tooltip": {
+                    "shared": true,
+                    "sort": 0,
+                    "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                    "buckets": null,
+                    "mode": "time",
+                    "name": null,
+                    "show": true,
+                    "values": []
+                },
+                "yaxes": [
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    },
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    }
+                ],
+                "yaxis": {
+                    "align": false,
+                    "alignLevel": null
+                }
+                },
+                {
+                "alert": {
+                    "alertRuleTags": {},
+                    "conditions": [
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.3
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "and"
+                        },
+                        "query": {
+                        "params": [
+                            "B",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    },
+                    {
+                        "evaluator": {
+                        "params": [
+                            1.5
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "or"
+                        },
+                        "query": {
+                        "params": [
+                            "D",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    }
+                    ],
+                    "executionErrorState": "alerting",
+                    "for": "90s",
+                    "frequency": "1m",
+                    "handler": 1,
+                    "message": "Either Create User is experiencing too many errors or Average response time is higher than 500 ms",
+                    "name": "Call Rate - Create User alert",
+                    "noDataState": "ok",
+                    "notifications": [
+                    {
+                        "uid": "ndPvlQGMz"
+                    }
+                    ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                    "defaults": {
+                    "custom": {}
+                    },
+                    "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 16
+                },
+                "hiddenSeries": false,
+                "id": 6,
+                "legend": {
+                    "alignAsTable": true,
+                    "avg": true,
+                    "current": true,
+                    "max": true,
+                    "min": true,
+                    "rightSide": false,
+                    "show": true,
+                    "total": true,
+                    "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                    "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                    {
+                    "expr": "changes(user_create_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                    },
+                    {
+                    "expr": "rate(user_create_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                    },
+                    {
+                    "expr": "rate(user_create_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                    },
+                    {
+                    "expr": "user_create_seconds_sum/user_create_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                    }
+                ],
+                "thresholds": [
+                    {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                    }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Create User",
+                "tooltip": {
+                    "shared": true,
+                    "sort": 0,
+                    "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                    "buckets": null,
+                    "mode": "time",
+                    "name": null,
+                    "show": true,
+                    "values": []
+                },
+                "yaxes": [
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    },
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    }
+                ],
+                "yaxis": {
+                    "align": false,
+                    "alignLevel": null
+                }
+                },
+                {
+                "alert": {
+                    "alertRuleTags": {},
+                    "conditions": [
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.3
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "and"
+                        },
+                        "query": {
+                        "params": [
+                            "B",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    },
+                    {
+                        "evaluator": {
+                        "params": [
+                            1
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "or"
+                        },
+                        "query": {
+                        "params": [
+                            "D",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    }
+                    ],
+                    "executionErrorState": "alerting",
+                    "for": "90s",
+                    "frequency": "1m",
+                    "handler": 1,
+                    "message": "Either List All Project is experiencing too many errors or Average response time is higher than 1 second",
+                    "name": "Call Rate - List All Project alert",
+                    "noDataState": "ok",
+                    "notifications": [
+                    {
+                        "uid": "ndPvlQGMz"
+                    }
+                    ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                    "defaults": {
+                    "custom": {}
+                    },
+                    "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 16
+                },
+                "hiddenSeries": false,
+                "id": 7,
+                "legend": {
+                    "alignAsTable": true,
+                    "avg": true,
+                    "current": true,
+                    "max": true,
+                    "min": true,
+                    "rightSide": false,
+                    "show": true,
+                    "total": true,
+                    "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                    "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                    {
+                    "expr": "changes(user_listAllProjectUsers_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                    },
+                    {
+                    "expr": "rate(user_listAllProjectUsers_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                    },
+                    {
+                    "expr": "rate(user_listAllProjectUsers_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                    },
+                    {
+                    "expr": "user_listAllProjectUsers_seconds_sum/user_listAllProjectUsers_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                    }
+                ],
+                "thresholds": [
+                    {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                    }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - List All Project",
+                "tooltip": {
+                    "shared": true,
+                    "sort": 0,
+                    "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                    "buckets": null,
+                    "mode": "time",
+                    "name": null,
+                    "show": true,
+                    "values": []
+                },
+                "yaxes": [
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    },
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    }
+                ],
+                "yaxis": {
+                    "align": false,
+                    "alignLevel": null
+                }
+                },
+                {
+                "alert": {
+                    "alertRuleTags": {},
+                    "conditions": [
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.3
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "and"
+                        },
+                        "query": {
+                        "params": [
+                            "B",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    },
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.5
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "or"
+                        },
+                        "query": {
+                        "params": [
+                            "D",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    }
+                    ],
+                    "executionErrorState": "alerting",
+                    "for": "90s",
+                    "frequency": "1m",
+                    "handler": 1,
+                    "message": "Either Revoke User Access is experiencing too many errors or Average response time is higher than 500 ms",
+                    "name": "Call Rate - Revoke User Access alert",
+                    "noDataState": "ok",
+                    "notifications": [
+                    {
+                        "uid": "ndPvlQGMz"
+                    }
+                    ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                    "defaults": {
+                    "custom": {}
+                    },
+                    "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 24
+                },
+                "hiddenSeries": false,
+                "id": 5,
+                "legend": {
+                    "alignAsTable": true,
+                    "avg": true,
+                    "current": true,
+                    "max": true,
+                    "min": true,
+                    "rightSide": false,
+                    "show": true,
+                    "total": true,
+                    "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                    "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                    {
+                    "expr": "changes(user_clientPortal_revoke_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                    },
+                    {
+                    "expr": "rate(user_clientPortal_revoke_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                    },
+                    {
+                    "expr": "rate(user_clientPortal_revoke_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                    },
+                    {
+                    "expr": "user_clientPortal_revoke_seconds_sum/user_clientPortal_revoke_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                    }
+                ],
+                "thresholds": [
+                    {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                    }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Revoke User Access",
+                "tooltip": {
+                    "shared": true,
+                    "sort": 0,
+                    "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                    "buckets": null,
+                    "mode": "time",
+                    "name": null,
+                    "show": true,
+                    "values": []
+                },
+                "yaxes": [
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    },
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    }
+                ],
+                "yaxis": {
+                    "align": false,
+                    "alignLevel": null
+                }
+                },
+                {
+                "alert": {
+                    "alertRuleTags": {},
+                    "conditions": [
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.3
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "and"
+                        },
+                        "query": {
+                        "params": [
+                            "B",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    },
+                    {
+                        "evaluator": {
+                        "params": [
+                            1.5
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "or"
+                        },
+                        "query": {
+                        "params": [
+                            "D",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    }
+                    ],
+                    "executionErrorState": "alerting",
+                    "for": "90s",
+                    "frequency": "1m",
+                    "handler": 1,
+                    "message": "Either User Forgot Password is experiencing too many errors or Average response time is higher than 500 ms",
+                    "name": "Call Rate - User Forgot Password alert",
+                    "noDataState": "ok",
+                    "notifications": [
+                    {
+                        "uid": "ndPvlQGMz"
+                    }
+                    ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                    "defaults": {
+                    "custom": {}
+                    },
+                    "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 24
+                },
+                "hiddenSeries": false,
+                "id": 9,
+                "legend": {
+                    "alignAsTable": true,
+                    "avg": true,
+                    "current": true,
+                    "max": true,
+                    "min": true,
+                    "rightSide": false,
+                    "show": true,
+                    "total": true,
+                    "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                    "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                    {
+                    "expr": "changes(user_forgotPasswordRequest_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                    },
+                    {
+                    "expr": "rate(user_forgotPasswordRequest_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                    },
+                    {
+                    "expr": "rate(user_forgotPasswordRequest_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                    },
+                    {
+                    "expr": "user_forgotPasswordRequest_seconds_sum/user_forgotPasswordRequest_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                    }
+                ],
+                "thresholds": [
+                    {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                    }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - User Forgot Password",
+                "tooltip": {
+                    "shared": true,
+                    "sort": 0,
+                    "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                    "buckets": null,
+                    "mode": "time",
+                    "name": null,
+                    "show": true,
+                    "values": []
+                },
+                "yaxes": [
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    },
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    }
+                ],
+                "yaxis": {
+                    "align": false,
+                    "alignLevel": null
+                }
+                },
+                {
+                "alert": {
+                    "alertRuleTags": {},
+                    "conditions": [
+                    {
+                        "evaluator": {
+                        "params": [
+                            0.3
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "and"
+                        },
+                        "query": {
+                        "params": [
+                            "B",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    },
+                    {
+                        "evaluator": {
+                        "params": [
+                            1
+                        ],
+                        "type": "gt"
+                        },
+                        "operator": {
+                        "type": "or"
+                        },
+                        "query": {
+                        "params": [
+                            "D",
+                            "5m",
+                            "now"
+                        ]
+                        },
+                        "reducer": {
+                        "params": [],
+                        "type": "avg"
+                        },
+                        "type": "query"
+                    }
+                    ],
+                    "executionErrorState": "alerting",
+                    "for": "90s",
+                    "frequency": "1m",
+                    "handler": 1,
+                    "message": "Either User Create Role is experiencing too many errors or Average response time is higher than 500 ms",
+                    "name": "Call Rate - User Create Role alert",
+                    "noDataState": "ok",
+                    "notifications": [
+                    {
+                        "uid": "ndPvlQGMz"
+                    }
+                    ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                    "defaults": {
+                    "custom": {}
+                    },
+                    "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 32
+                },
+                "hiddenSeries": false,
+                "id": 11,
+                "legend": {
+                    "alignAsTable": true,
+                    "avg": true,
+                    "current": true,
+                    "max": true,
+                    "min": true,
+                    "rightSide": false,
+                    "show": true,
+                    "total": true,
+                    "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                    "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                    {
+                    "expr": "changes(user_role_create_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                    },
+                    {
+                    "expr": "rate(user_role_create_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                    },
+                    {
+                    "expr": "rate(user_role_create_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                    },
+                    {
+                    "expr": "user_role_create_seconds_sum/user_role_create_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                    }
+                ],
+                "thresholds": [
+                    {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                    }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - User Create Role",
+                "tooltip": {
+                    "shared": true,
+                    "sort": 0,
+                    "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                    "buckets": null,
+                    "mode": "time",
+                    "name": null,
+                    "show": true,
+                    "values": []
+                },
+                "yaxes": [
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    },
+                    {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                    }
+                ],
+                "yaxis": {
+                    "align": false,
+                    "alignLevel": null
+                }
+                }
+            ],
+            "schemaVersion": 25,
+            "style": "dark",
+            "tags": [],
+            "templating": {
+                "list": []
+            },
+            "time": {
+                "from": "now-6h",
+                "to": "now"
+            },
+            "timepicker": {
+                "refresh_intervals": [
+                "10s",
+                "30s",
+                "1m",
+                "5m",
+                "15m",
+                "30m",
+                "1h",
+                "2h",
+                "1d"
+                ]
+            },
+            "timezone": "",
+            "title": "Security Management API Service Health",
+            "uid": "LXkBXQMMz",
+            "version": 14
+        }          
+  kind: ConfigMap
+  metadata:
+    name: grafana-dashboard-experience-manager-api
+    namespace: monitoring
+- apiVersion: v1
+  data:
+    experience-manager-api.json: |-
+        {
+            "annotations": {
+              "list": [
+              {
+                  "builtIn": 1,
+                  "datasource": "-- Grafana --",
+                  "enable": true,
+                  "hide": true,
+                  "iconColor": "rgba(0, 211, 255, 1)",
+                  "name": "Annotations & Alerts",
+                  "type": "dashboard"
+                }
+              ]
+            },
+            "editable": true,
+            "gnetId": null,
+            "graphTooltip": 0,
+            "id": 31,
+            "links": [],
+            "panels": [
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    },
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.5
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "or"
+                      },
+                      "query": {
+                        "params": [
+                          "D",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "90s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "Either Add Playlist is experiencing too many errors or Average response time is higher than 500 ms",
+                  "name": "Call Rate - Add Playlist alert",
+                  "noDataState": "ok",
+                  "notifications": [
+                    {
+                      "uid": "ndPvlQGMz"
+                    }
+                  ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 0,
+                  "y": 0
+                },
+                "hiddenSeries": false,
+                "id": 2,
+                "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": true,
+                  "rightSide": false,
+                  "show": true,
+                  "total": true,
+                  "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "changes(playlist_create_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                  },
+                  {
+                    "expr": "rate(playlist_create_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                  },
+                  {
+                    "expr": "rate(playlist_create_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                  },
+                  {
+                    "expr": "playlist_create_seconds_sum/playlist_create_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Add Playlist",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    },
+                    {
+                      "evaluator": {
+                        "params": [
+                          3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "or"
+                      },
+                      "query": {
+                        "params": [
+                          "D",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "90s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "Either Create New Widget is experiencing too many errors or Average response time is higher than 500 ms",
+                  "name": "Call Rate - Create New Widget alert",
+                  "noDataState": "ok",
+                  "notifications": [
+                    {
+                      "uid": "ndPvlQGMz"
+                    }
+                  ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 12,
+                  "y": 0
+                },
+                "hiddenSeries": false,
+                "id": 4,
+                "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": true,
+                  "rightSide": false,
+                  "show": true,
+                  "total": true,
+                  "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "changes(widget_create_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                  },
+                  {
+                    "expr": "rate(widget_create_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                  },
+                  {
+                    "expr": "rate(widget_create_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                  },
+                  {
+                    "expr": "widget_create_seconds_sum/widget_create_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Create New Widget",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    },
+                    {
+                      "evaluator": {
+                        "params": [
+                          1
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "or"
+                      },
+                      "query": {
+                        "params": [
+                          "D",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "90s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "Either Get Screen Config is experiencing too many errors or Average response time is higher than 500 ms",
+                  "name": "Call Rate - Get Screen Config alert",
+                  "noDataState": "ok",
+                  "notifications": [
+                    {
+                      "uid": "ndPvlQGMz"
+                    }
+                  ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 0,
+                  "y": 8
+                },
+                "hiddenSeries": false,
+                "id": 10,
+                "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": true,
+                  "rightSide": false,
+                  "show": true,
+                  "total": true,
+                  "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "changes(screen_getScreenConfig_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                  },
+                  {
+                    "expr": "rate(screen_getScreenConfig_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                  },
+                  {
+                    "expr": "rate(screen_getScreenConfig_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                  },
+                  {
+                    "expr": "screen_getScreenConfig_seconds_sum/screen_getScreenConfig_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Get Screen Config",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    },
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.5
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "or"
+                      },
+                      "query": {
+                        "params": [
+                          "D",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "90s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "Either Playlist Publish/Unpublish is experiencing too many errors or Average response time is higher than 500 ms",
+                  "name": "Call Rate - Playlist Publish/Unpublish alert",
+                  "noDataState": "ok",
+                  "notifications": [
+                    {
+                      "uid": "ndPvlQGMz"
+                    }
+                  ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 12,
+                  "y": 8
+                },
+                "hiddenSeries": false,
+                "id": 3,
+                "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": true,
+                  "rightSide": false,
+                  "show": true,
+                  "total": true,
+                  "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "changes(playlist_updateStatus_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                  },
+                  {
+                    "expr": "rate(playlist_updateStatus_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                  },
+                  {
+                    "expr": "rate(playlist_updateStatus_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                  },
+                  {
+                    "expr": "playlist_updateStatus_seconds_sum/playlist_updateStatus_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Playlist Publish/Unpublish",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    },
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.5
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "or"
+                      },
+                      "query": {
+                        "params": [
+                          "D",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "90s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "Either  List All Screen is experiencing too many errors or Average response time is higher than 500 ms",
+                  "name": "Call Rate - List All Screen alert",
+                  "noDataState": "ok",
+                  "notifications": []
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 0,
+                  "y": 16
+                },
+                "hiddenSeries": false,
+                "id": 11,
+                "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": true,
+                  "rightSide": false,
+                  "show": true,
+                  "total": true,
+                  "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "changes(screen_listAll_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                  },
+                  {
+                    "expr": "rate(screen_listAll_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                  },
+                  {
+                    "expr": "rate(screen_listAll_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                  },
+                  {
+                    "expr": "screen_listAll_seconds_sum/screen_listAll_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - List All Screen",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    },
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.5
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "or"
+                      },
+                      "query": {
+                        "params": [
+                          "A",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "90s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "Either Update Widget is experiencing too many errors or Average response time is higher than 500 ms",
+                  "name": "Call Rate - Update Widget alert",
+                  "noDataState": "ok",
+                  "notifications": [
+                    {
+                      "uid": "ndPvlQGMz"
+                    }
+                  ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 12,
+                  "y": 16
+                },
+                "hiddenSeries": false,
+                "id": 5,
+                "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": true,
+                  "rightSide": false,
+                  "show": true,
+                  "total": true,
+                  "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "changes(widget_updateContainerStatus_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                  },
+                  {
+                    "expr": "rate(widget_updateContainerStatus_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                  },
+                  {
+                    "expr": "rate(widget_updateContainerStatus_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                  },
+                  {
+                    "expr": "widget_updateContainerStatus_seconds_sum/widget_updateContainerStatus_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Update Widget",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    },
+                    {
+                      "evaluator": {
+                        "params": [
+                          1.5
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "or"
+                      },
+                      "query": {
+                        "params": [
+                          "D",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "90s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "Either List All Widget is experiencing too many errors or Average response time is higher than 500 ms",
+                  "name": "Call Rate - List All Widget alert",
+                  "noDataState": "ok",
+                  "notifications": [
+                    {
+                      "uid": "ndPvlQGMz"
+                    }
+                  ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 0,
+                  "y": 24
+                },
+                "hiddenSeries": false,
+                "id": 8,
+                "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": true,
+                  "rightSide": false,
+                  "show": true,
+                  "total": true,
+                  "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "changes(widget_listAll_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                  },
+                  {
+                    "expr": "rate(widget_listAll_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                  },
+                  {
+                    "expr": "rate(widget_listAll_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                  },
+                  {
+                    "expr": "widget_listAll_seconds_sum/widget_listAll_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - List All Widget",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    },
+                    {
+                      "evaluator": {
+                        "params": [
+                          1.5
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "or"
+                      },
+                      "query": {
+                        "params": [
+                          "D",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "90s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "Either List All Client Apps is experiencing too many errors or Average response time is higher than 500 ms",
+                  "name": "Call Rate - List All Client Apps alert",
+                  "noDataState": "ok",
+                  "notifications": [
+                    {
+                      "uid": "ndPvlQGMz"
+                    }
+                  ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 12,
+                  "y": 24
+                },
+                "hiddenSeries": false,
+                "id": 6,
+                "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": true,
+                  "rightSide": false,
+                  "show": true,
+                  "total": true,
+                  "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "changes(clientApp_listAll_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                  },
+                  {
+                    "expr": "rate(clientApp_listAll_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                  },
+                  {
+                    "expr": "rate(clientApp_listAll_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                  },
+                  {
+                    "expr": "clientApp_listAll_seconds_sum/clientApp_listAll_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - List All Client Apps",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    },
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.5
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "or"
+                      },
+                      "query": {
+                        "params": [
+                          "A",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "90s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "Either List  All Playlist is experiencing too many errors or Average response time is higher than 500 ms",
+                  "name": "Call Rate - List All Playlist alert",
+                  "noDataState": "ok",
+                  "notifications": []
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 0,
+                  "y": 32
+                },
+                "hiddenSeries": false,
+                "id": 7,
+                "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": true,
+                  "rightSide": false,
+                  "show": true,
+                  "total": true,
+                  "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "changes(playlist_all_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                  },
+                  {
+                    "expr": "rate(playlist_all_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                  },
+                  {
+                    "expr": "rate(playlist_all_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                  },
+                  {
+                    "expr": "playlist_all_seconds_sum/playlist_all_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - List All Playlist",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.3
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    },
+                    {
+                      "evaluator": {
+                        "params": [
+                          0.5
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "or"
+                      },
+                      "query": {
+                        "params": [
+                          "D",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "90s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "Either Update Widget Screen Config is experiencing too many errors or Average response time is higher than 500 ms",
+                  "name": "Call Rate - Update Widget Screen Config alert",
+                  "noDataState": "ok",
+                  "notifications": [
+                    {
+                      "uid": "ndPvlQGMz"
+                    }
+                  ]
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "decimals": 2,
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 12,
+                  "y": 32
+                },
+                "hiddenSeries": false,
+                "id": 9,
+                "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": true,
+                  "rightSide": false,
+                  "show": true,
+                  "total": true,
+                  "values": true
+                },
+                "lines": true,
+                "linewidth": 1,
+                "links": [],
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 1,
+                "points": true,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "changes(widget_updateScreenConfig_seconds_count[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Total Calls {{status}} - {{outcome}}",
+                    "refId": "C"
+                  },
+                  {
+                    "expr": "rate(widget_updateScreenConfig_seconds_count{outcome=\"SUCCESS\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Success {{status}} - {{outcome}}",
+                    "refId": "A"
+                  },
+                  {
+                    "expr": "rate(widget_updateScreenConfig_seconds_count{outcome=\"CLIENT_ERROR\"}[1m])",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "API Call Rate - Failure {{status}} - {{outcome}}",
+                    "refId": "B"
+                  },
+                  {
+                    "expr": "widget_updateScreenConfig_seconds_sum/widget_updateScreenConfig_seconds_count",
+                    "format": "time_series",
+                    "intervalFactor": 1,
+                    "legendFormat": "Average Response Times {{status}} - {{outcome}}",
+                    "refId": "D"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "gt",
+                    "value": 0.3
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "Call Rate - Update Widget Screen Config",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "transparent": true,
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              }
+            ],
+            "schemaVersion": 25,
+            "style": "dark",
+            "tags": [],
+            "templating": {
+              "list": []
+            },
+            "time": {
+              "from": "now-6h",
+              "to": "now"
+            },
+            "timepicker": {
+              "refresh_intervals": [
+                "10s",
+                "30s",
+                "1m",
+                "5m",
+                "15m",
+                "30m",
+                "1h",
+                "2h",
+                "1d"
+              ]
+            },
+            "timezone": "",
+            "title": "Experience Manager API Service Health",
+            "uid": "tlIrlQMMz",
+            "version": 16
+        }            
   kind: ConfigMap
   metadata:
     name: grafana-dashboard-node-cluster-rsrc-use
