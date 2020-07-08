@@ -87,9 +87,12 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/security-management-api
           name: grafana-dashboard-security-management-api
           readOnly: false  
+        - mountPath: /grafana-dashboard-definitions/0/content-manager-api
+          name: grafana-dashboard-content-manager-api
+          readOnly: false
         - mountPath: /grafana-dashboard-definitions/0/subscription-manager-api
           name: grafana-dashboard-subscription-manager-api
-          readOnly: false          
+          readOnly: false            
         - mountPath: /grafana-dashboard-definitions/0/experience-manager-api
           name: grafana-dashboard-experience-manager-api
           readOnly: false  
@@ -136,8 +139,7 @@ spec:
         runAsUser: 65534
       serviceAccountName: grafana
       volumes:
-      - emptyDir: {}
-        name: grafana-storage
+      - name: grafana-storage
       - configMap: 
           name: grafana-datasources
         name: grafana-datasources
@@ -189,6 +191,9 @@ spec:
       - configMap:
           name: grafana-dashboard-security-management-api
         name: grafana-dashboard-security-management-api    
+      - configMap:
+          name: grafana-dashboard-content-manager-api
+        name: grafana-dashboard-content-manager-api
       - configMap:
           name: grafana-dashboard-subscription-manager-api
         name: grafana-dashboard-subscription-manager-api      
