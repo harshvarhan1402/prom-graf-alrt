@@ -81,9 +81,15 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/application-health
           name: grafana-dashboard-application-health
           readOnly: false  
+        - mountPath: /grafana-dashboard-definitions/0/tenant-manager-api
+          name: grafana-dashboard-tenant-manager-api
+          readOnly: false          
         - mountPath: /grafana-dashboard-definitions/0/security-management-api
           name: grafana-dashboard-security-management-api
           readOnly: false  
+        - mountPath: /grafana-dashboard-definitions/0/subscription-manager-api
+          name: grafana-dashboard-subscription-manager-api
+          readOnly: false          
         - mountPath: /grafana-dashboard-definitions/0/experience-manager-api
           name: grafana-dashboard-experience-manager-api
           readOnly: false  
@@ -178,8 +184,14 @@ spec:
           name: grafana-dashboard-application-health
         name: grafana-dashboard-application-health
       - configMap:
+          name: grafana-dashboard-tenant-manager-api
+        name: grafana-dashboard-tenant-manager-api          
+      - configMap:
           name: grafana-dashboard-security-management-api
         name: grafana-dashboard-security-management-api    
+      - configMap:
+          name: grafana-dashboard-subscription-manager-api
+        name: grafana-dashboard-subscription-manager-api      
       - configMap:
           name: grafana-dashboard-experience-manager-api
         name: grafana-dashboard-experience-manager-api
