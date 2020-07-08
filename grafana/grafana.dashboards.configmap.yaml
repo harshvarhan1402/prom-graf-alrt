@@ -21943,6 +21943,1029 @@ items:
       }
   kind: ConfigMap
   metadata:
+    name: grafana-dashboard-application-health
+    namespace: monitoring
+- apiVersion: v1
+  data:
+    application-health.json: |-
+        {
+            "annotations": {
+              "list": [
+                {
+                  "builtIn": 1,
+                  "datasource": "-- Grafana --",
+                  "enable": true,
+                  "hide": true,
+                  "iconColor": "rgba(0, 211, 255, 1)",
+                  "name": "Annotations & Alerts",
+                  "type": "dashboard"
+                }
+              ]
+            },
+            "editable": true,
+            "gnetId": null,
+            "graphTooltip": 0,
+            "id": 28,
+            "links": [],
+            "panels": [
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          1
+                        ],
+                        "type": "lt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "A",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "sum"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "30s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "CONTENT MANAGER DOWN",
+                  "name": "CONTENT MANAGER alert",
+                  "noDataState": "ok",
+                  "notifications": []
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 9,
+                  "w": 12,
+                  "x": 0,
+                  "y": 0
+                },
+                "hiddenSeries": false,
+                "id": 2,
+                "legend": {
+                  "avg": false,
+                  "current": false,
+                  "max": false,
+                  "min": false,
+                  "show": true,
+                  "total": false,
+                  "values": false
+                },
+                "lines": true,
+                "linewidth": 1,
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 2,
+                "points": false,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "sum(up{job=\"main-apps/monitor-content-manager-app\"})\t",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "lt",
+                    "value": 1
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "CONTENT MANAGER",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          1
+                        ],
+                        "type": "lt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "A",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "sum"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "30s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "CONTENT MANAGER JOBS IS DOWN",
+                  "name": "CONTENT MANAGER JOBS alert",
+                  "noDataState": "ok",
+                  "notifications": []
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 9,
+                  "w": 12,
+                  "x": 12,
+                  "y": 0
+                },
+                "hiddenSeries": false,
+                "id": 3,
+                "legend": {
+                  "avg": false,
+                  "current": false,
+                  "max": false,
+                  "min": false,
+                  "show": true,
+                  "total": false,
+                  "values": false
+                },
+                "lines": true,
+                "linewidth": 1,
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 2,
+                "points": false,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "sum(up{job=\"main-apps/monitor-content-manager-jobs\"})\t",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "lt",
+                    "value": 1
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "CONTENT MANAGER JOBS",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          1
+                        ],
+                        "type": "lt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "A",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "sum"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "30s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "CONTENT MANAGER SEARCH IS DOWN",
+                  "name": "CONTENT MANAGER SEARCH alert",
+                  "noDataState": "ok",
+                  "notifications": []
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 9,
+                  "w": 12,
+                  "x": 0,
+                  "y": 9
+                },
+                "hiddenSeries": false,
+                "id": 4,
+                "legend": {
+                  "avg": false,
+                  "current": false,
+                  "max": false,
+                  "min": false,
+                  "show": true,
+                  "total": false,
+                  "values": false
+                },
+                "lines": true,
+                "linewidth": 1,
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 2,
+                "points": false,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "sum(up{job=\"main-apps/monitor-content-manager-search\"})\t",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "lt",
+                    "value": 1
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "CONTENT MANAGER SEARCH",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          1
+                        ],
+                        "type": "lt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "A",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "sum"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "30s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "EXPERIENCE MANAGER IS DOWN",
+                  "name": "EXPERIENCE MANAGER  alert",
+                  "noDataState": "ok",
+                  "notifications": []
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 9,
+                  "w": 12,
+                  "x": 12,
+                  "y": 9
+                },
+                "hiddenSeries": false,
+                "id": 6,
+                "legend": {
+                  "avg": false,
+                  "current": false,
+                  "max": false,
+                  "min": false,
+                  "show": true,
+                  "total": false,
+                  "values": false
+                },
+                "lines": true,
+                "linewidth": 1,
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 2,
+                "points": false,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "sum(up{job=\"main-apps/monitor-experience-manager-app\"})\t",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "lt",
+                    "value": 1
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "EXPERIENCE MANAGER ",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          1
+                        ],
+                        "type": "lt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "A",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "sum"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "30s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "PLATFORM AUDITOR IS DOWN",
+                  "name": "PLATFORM AUDITOR  alert",
+                  "noDataState": "ok",
+                  "notifications": []
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 9,
+                  "w": 12,
+                  "x": 0,
+                  "y": 18
+                },
+                "hiddenSeries": false,
+                "id": 7,
+                "legend": {
+                  "avg": false,
+                  "current": false,
+                  "max": false,
+                  "min": false,
+                  "show": true,
+                  "total": false,
+                  "values": false
+                },
+                "lines": true,
+                "linewidth": 1,
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 2,
+                "points": false,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "sum(up{job=\"main-apps/monitor-auditor-app\"})",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "lt",
+                    "value": 1
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "PLATFORM AUDITOR ",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          1
+                        ],
+                        "type": "lt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "A",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "sum"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "30s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "SECURITY MANAGER DOWN",
+                  "name": "PLATFORM SECURITY MANAGER alert",
+                  "noDataState": "ok",
+                  "notifications": []
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 9,
+                  "w": 12,
+                  "x": 12,
+                  "y": 18
+                },
+                "hiddenSeries": false,
+                "id": 8,
+                "legend": {
+                  "avg": false,
+                  "current": false,
+                  "max": false,
+                  "min": false,
+                  "show": true,
+                  "total": false,
+                  "values": false
+                },
+                "lines": true,
+                "linewidth": 1,
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 2,
+                "points": false,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "sum(up{job=\"main-apps/monitor-platform-security-app\"})\t",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "lt",
+                    "value": 1
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "PLATFORM SECURITY MANAGER",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              },
+              {
+                "alert": {
+                  "alertRuleTags": {},
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          1
+                        ],
+                        "type": "lt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "A",
+                          "5m",
+                          "now"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "sum"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "executionErrorState": "alerting",
+                  "for": "30s",
+                  "frequency": "1m",
+                  "handler": 1,
+                  "message": "TENANT RESOURCE PROVISION IS DOWN",
+                  "name": "TENANT RESOURCE PROVISION alert",
+                  "noDataState": "ok",
+                  "notifications": []
+                },
+                "aliasColors": {},
+                "bars": false,
+                "dashLength": 10,
+                "dashes": false,
+                "datasource": "prometheus",
+                "fieldConfig": {
+                  "defaults": {
+                    "custom": {}
+                  },
+                  "overrides": []
+                },
+                "fill": 1,
+                "fillGradient": 0,
+                "gridPos": {
+                  "h": 9,
+                  "w": 12,
+                  "x": 0,
+                  "y": 27
+                },
+                "hiddenSeries": false,
+                "id": 9,
+                "legend": {
+                  "avg": false,
+                  "current": false,
+                  "max": false,
+                  "min": false,
+                  "show": true,
+                  "total": false,
+                  "values": false
+                },
+                "lines": true,
+                "linewidth": 1,
+                "nullPointMode": "null",
+                "options": {
+                  "dataLinks": []
+                },
+                "percentage": false,
+                "pointradius": 2,
+                "points": false,
+                "renderer": "flot",
+                "seriesOverrides": [],
+                "spaceLength": 10,
+                "stack": false,
+                "steppedLine": false,
+                "targets": [
+                  {
+                    "expr": "sum(up{job=\"main-apps/monitor-tenant-resource-provision-app\"})\t",
+                    "interval": "",
+                    "legendFormat": "",
+                    "refId": "A"
+                  }
+                ],
+                "thresholds": [
+                  {
+                    "colorMode": "critical",
+                    "fill": true,
+                    "line": true,
+                    "op": "lt",
+                    "value": 1
+                  }
+                ],
+                "timeFrom": null,
+                "timeRegions": [],
+                "timeShift": null,
+                "title": "TENANT RESOURCE PROVISION",
+                "tooltip": {
+                  "shared": true,
+                  "sort": 0,
+                  "value_type": "individual"
+                },
+                "type": "graph",
+                "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": []
+                },
+                "yaxes": [
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  },
+                  {
+                    "format": "short",
+                    "label": null,
+                    "logBase": 1,
+                    "max": null,
+                    "min": null,
+                    "show": true
+                  }
+                ],
+                "yaxis": {
+                  "align": false,
+                  "alignLevel": null
+                }
+              }
+            ],
+            "refresh": false,
+            "schemaVersion": 25,
+            "style": "dark",
+            "tags": [],
+            "templating": {
+              "list": []
+            },
+            "time": {
+              "from": "now-5m",
+              "to": "now"
+            },
+            "timepicker": {
+              "refresh_intervals": [
+                "10s",
+                "30s",
+                "1m",
+                "5m",
+                "15m",
+                "30m",
+                "1h",
+                "2h",
+                "1d"
+              ]
+            },
+            "timezone": "",
+            "title": "APPLICATION HEALTH",
+            "uid": "zDuALQMGz",
+            "version": 10
+        }      
+  kind: ConfigMap
+  metadata:
     name: grafana-dashboard-node-cluster-rsrc-use
     namespace: monitoring
 - apiVersion: v1

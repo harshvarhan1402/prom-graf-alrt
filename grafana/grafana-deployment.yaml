@@ -78,6 +78,9 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/namespace-by-workload
           name: grafana-dashboard-namespace-by-workload
           readOnly: false
+        - mountPath: /grafana-dashboard-definitions/0/application-health
+          name: grafana-dashboard-application-health
+          readOnly: false  
         - mountPath: /grafana-dashboard-definitions/0/node-cluster-rsrc-use
           name: grafana-dashboard-node-cluster-rsrc-use
           readOnly: false
@@ -165,6 +168,9 @@ spec:
       - configMap:
           name: grafana-dashboard-namespace-by-workload
         name: grafana-dashboard-namespace-by-workload
+      - configMap:
+          name: grafana-dashboard-application-health
+        name: grafana-dashboard-application-health
       - configMap:
           name: grafana-dashboard-node-cluster-rsrc-use
         name: grafana-dashboard-node-cluster-rsrc-use
