@@ -93,6 +93,9 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/subscription-manager-api
           name: grafana-dashboard-subscription-manager-api
           readOnly: false            
+        - mountPath: /grafana-dashboard-definitions/0/payment-manager-api
+          name: grafana-dashboard-payment-manager-api
+          readOnly: false          
         - mountPath: /grafana-dashboard-definitions/0/experience-manager-api
           name: grafana-dashboard-experience-manager-api
           readOnly: false  
@@ -197,6 +200,9 @@ spec:
       - configMap:
           name: grafana-dashboard-subscription-manager-api
         name: grafana-dashboard-subscription-manager-api      
+      - configMap:
+          name: grafana-dashboard-payment-manager-api
+        name: grafana-dashboard-payment-manager-api
       - configMap:
           name: grafana-dashboard-experience-manager-api
         name: grafana-dashboard-experience-manager-api
