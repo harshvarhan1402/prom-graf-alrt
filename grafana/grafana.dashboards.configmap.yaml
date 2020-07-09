@@ -21965,7 +21965,6 @@ items:
             "editable": true,
             "gnetId": null,
             "graphTooltip": 0,
-            "id": 25,
             "links": [],
             "panels": [
                 {
@@ -22994,6 +22993,7 @@ items:
                     "for": "30s",
                     "frequency": "1m",
                     "handler": 1,
+                    "message": "SUBSCRIPTION MANAGER DOWN",
                     "name": "SUBSCRIPTION MANAGER alert",
                     "noDataState": "ok",
                     "notifications": []
@@ -23127,7 +23127,7 @@ items:
             "timezone": "",
             "title": "APPLICATION HEALTH",
             "uid": "zDuALQMGz",
-            "version": 5
+            "version": 2
             }
   kind: ConfigMap
   metadata:
