@@ -35,7 +35,6 @@ spec:
             name: prometheus-server-conf
 
         - name: prometheus-storage-volume
-          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
